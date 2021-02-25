@@ -44,7 +44,7 @@
           <td>{{ item.english }}</td>
           <td>{{ item.majorOne }}</td>
           <td>{{ item.majorTwo }}</td>
-          <td>{{ total(item) }}</td>
+          <td>{{ item.totale }}</td>
         </tr>
       </tbody>
     </table>
@@ -119,10 +119,16 @@ export default {
         .then((res) => {
           if (res.code == "0") {
             this.allData = JSON.parse(JSON.stringify(res.data));
-            this.all = res.data.sort((a, b) => {
-              let arr = a;
-              arr.totale = this.total(arr);
-              return b.totale - a.totale;
+            let arr1 = [];
+            res.data.forEach((item, index) => {
+              let arr = item;
+              arr.totale = this.total(item);
+              arr1.push(arr);
+              if (index == res.data.length - 1) {
+                this.all = arr1.sort((a, b) => {
+                  return b.totale - a.totale;
+                });
+              }
             });
           } else {
             confirm("遇到未知错误,请联系管理员!");
@@ -185,11 +191,12 @@ export default {
           border: 1px solid rgb(138, 136, 136);
           ul {
             flex-direction: column;
-            height: 100%;
+            height: auto;
             width: 100%;
+            padding: 0 0;
             li {
               width: 92%;
-              height: 1.8rem;
+              height: 2rem;
             }
           }
         }
