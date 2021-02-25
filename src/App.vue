@@ -63,7 +63,7 @@ body,
       display: flex;
       height: 3rem;
       align-items: center;
-
+      text-align: left;
       label {
         width: 25%;
         padding-left: 0.3rem;
