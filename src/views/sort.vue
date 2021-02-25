@@ -41,7 +41,7 @@
       <div class="srot_title">您的总成绩目前在本院校本专业的排位为:</div>
       <div class="sort_number">
         <h1>{{ Ranking }}</h1>
-        <span>/{{totlaNumber}}名</span>
+        <span>/{{ totlaNumber }}名</span>
       </div>
     </div>
   </div>

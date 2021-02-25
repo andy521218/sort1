@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    sort: false
+    sort: false,
+    all: false
   },
   mutations: {
   },

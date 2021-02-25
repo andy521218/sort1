@@ -9,6 +9,7 @@ html,
 body,
 #app {
   margin: 0 0;
+  padding: 0 0;
   width: 100%;
   height: 100%;
   background: rgba(196, 196, 196, 0.1);
@@ -31,9 +32,20 @@ body,
     background: rgba(255, 255, 255);
     border-radius: 10px;
     display: flex;
-    text-align: center;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     padding: 5% 0%;
+    span {
+      width: 81%;
+    }
+    h6,
+    h4 {
+      margin: 2% 0%;
+    }
+    h4 {
+      color: rgb(248, 54, 87);
+    }
   }
   .message,
   .number {
@@ -57,7 +69,7 @@ body,
         padding-left: 0.3rem;
       }
       .select {
-        width: 70%;
+        width: 66%;
         height: 2rem;
         border: 1px solid rgb(138, 136, 136);
         border-radius: 2px;
@@ -109,6 +121,5 @@ body,
       }
     }
   }
-  
 }
 </style>

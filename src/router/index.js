@@ -14,7 +14,17 @@ const routes = [
     path: '/sort',
     name: 'sortt',
     component: () => import(/* webpackChunkName: "about" */ '../views/sort.vue')
-  }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('../views/login.vue')
+  },
+  {
+    path: '/all',
+    name: 'all',
+    component: () => import('../views/all.vue')
+  },
 ]
 
 const router = new VueRouter({

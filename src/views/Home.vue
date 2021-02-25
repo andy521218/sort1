@@ -2,7 +2,9 @@
   <div class="home">
     <header>填写成绩</header>
     <div class="title">
-      请加入【21届】西政考研学硕复试交流总群893677783获取各专业排名结果
+      <h6>请加入【21届】西政考研学硕复试交流</h6>
+      <h4>总群893677783</h4>
+      <h6>获取各专业排名结果</h6>
     </div>
 
     <ul class="message">
@@ -91,7 +93,22 @@ export default {
       english: "",
       majorOne: "",
       majorTwo: "",
+      isIp: true,
+      ip: "",
     };
+  },
+  mounted() {
+    setTimeout(() => {
+      this.ip = localStorage.getItem("ip");
+      this.axios.get("/customer/ip").then((res) => {
+        for (let i = 0; i < res.data.length; i++) {
+          if (res.data[i].ip == this.ip) {
+            this.isIp = false;
+            break;
+          }
+        }
+      });
+    }, 1500);
   },
   methods: {
     select(e) {
@@ -119,31 +136,38 @@ export default {
         confirm("请输入正确的专业二分数");
         return;
       }
-      // this.axios.get("/customer/ip").then((res) => {
-      //   console.log(res);
-      // });
-      let ip = localStorage.getItem("ip");
-      this.axios.post("/customer/ip", {
-        ip: ip,
-      }).then(res=>{
-        console.log(res);
-      });
-      // this.axios
-      //   .post("/customer/add", {
-      //     majorType: this.majorType,
-      //     politics: this.politics,
-      //     english: this.english,
-      //     majorOne: this.majorOne,
-      //     majorTwo: this.majorTwo,
-      //   })
-      //   .then((res) => {
-      //     if (res.code == "0") {
-      //       this.$store.state.sort = true;
-      //       this.$router.push("sort");
-      //     } else {
-      //       confirm("服务器繁忙,请稍后重试!");
-      //     }
-      //   });
+      if (!this.isIp) {
+        confirm("您已经录入成绩,请不要重复添加!");
+        return;
+      }
+      if (!this.ip) {
+        confirm("您的设备存在异常,请更换设备后再试!");
+        return;
+      }
+      this.axios
+        .post("/customer/ip", {
+          ip: this.ip,
+        })
+        .then((res) => {
+          if (res.code == 0) {
+            this.axios
+              .post("/customer/add", {
+                majorType: this.majorType,
+                politics: this.politics,
+                english: this.english,
+                majorOne: this.majorOne,
+                majorTwo: this.majorTwo,
+              })
+              .then((res) => {
+                if (res.code == "0") {
+                  this.$store.state.sort = true;
+                  this.$router.push("sort");
+                } else {
+                  confirm("服务器繁忙,请稍后重试!");
+                }
+              });
+          }
+        });
     },
   },
 };
@@ -167,6 +191,7 @@ export default {
     border-radius: 3px;
     outline: none;
     margin-top: 5%;
+    font-size: 1rem;
   }
 }
 </style>
