@@ -121,5 +121,16 @@ body,
       }
     }
   }
+  .submit {
+    width: 70%;
+    height: 2.2rem;
+    color: rgb(255, 255, 255);
+    background-color: rgb(64, 158, 255);
+    border: rgb(64, 158, 255);
+    border-radius: 3px;
+    outline: none;
+    margin-top: 5%;
+    font-size: 1rem;
+  }
 }
 </style>

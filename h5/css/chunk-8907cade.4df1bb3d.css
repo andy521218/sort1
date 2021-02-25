@@ -1,0 +1,1 @@
+.login{width:100%;height:100%;flex-direction:column;padding:0 0;margin:0 0}.login,.login li{display:flex;align-items:center;justify-content:center}.login li{width:95%;height:3em}.login li label{margin-right:1rem;width:15%}.login li input{width:60%;height:2rem}
