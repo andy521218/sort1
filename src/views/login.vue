@@ -6,7 +6,7 @@
     </li>
     <li>
       <label for="">密码:</label>
-      <input type="text" v-model="password" placeholder="请输入密码" />
+      <input type="password" v-model="password" placeholder="请输入密码" />
     </li>
     <li>
       <button class="submit" @click="submit">登入</button>
